@@ -81,6 +81,7 @@ public class ThreadPractice {
                 System.out.println(Thread.currentThread().getName() + "L "  + i);
                     try{
                         Thread.sleep(1000);
+                        System.out.println("runnable 接口执行成功");
                     }catch(InterruptedException e){
 
                     }
@@ -90,9 +91,7 @@ public class ThreadPractice {
         }
         static void  practice2_RunnableBasics(){
             MyRunnable myRunnable = new MyRunnable();
-
             myRunnable.run();
-
         }
 
 

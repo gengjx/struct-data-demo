@@ -20,6 +20,7 @@
         <module>java-basics-practice</module>
         <module>java-advanced-practice</module>
         <module>java-senior-practice</module>
+        <module>serach</module>
     </modules>
 
     <properties>

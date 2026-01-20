@@ -21,6 +21,7 @@
         <module>java-advanced-practice</module>
         <module>java-senior-practice</module>
         <module>serach</module>
+        <module>skip-list</module>
     </modules>
 
     <properties>

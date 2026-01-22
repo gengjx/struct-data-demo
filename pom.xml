@@ -22,6 +22,7 @@
         <module>java-senior-practice</module>
         <module>serach</module>
         <module>skip-list</module>
+        <module>hash-table</module>
     </modules>
 
     <properties>

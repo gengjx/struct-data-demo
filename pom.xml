@@ -20,9 +20,11 @@
         <module>java-basics-practice</module>
         <module>java-advanced-practice</module>
         <module>java-senior-practice</module>
+        <module>data-structure-algorithm-practice</module>
         <module>serach</module>
         <module>skip-list</module>
         <module>hash-table</module>
+        <module>tree</module>
     </modules>
 
     <properties>

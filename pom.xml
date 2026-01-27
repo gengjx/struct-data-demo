@@ -25,6 +25,10 @@
         <module>skip-list</module>
         <module>hash-table</module>
         <module>tree</module>
+        <module>mysql-learning</module>
+        <module>kafka-learning</module>
+        <module>redis-learning</module>
+        <module>heap</module>
     </modules>
 
     <properties>
@@ -38,15 +42,14 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
-            <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -55,3 +58,5 @@
     </dependencies>
 
 </project>
+
+

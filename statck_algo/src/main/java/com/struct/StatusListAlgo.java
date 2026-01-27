@@ -1,6 +1,8 @@
 package com.struct;
 
+
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -193,6 +195,7 @@ public class StatusListAlgo {
     @AllArgsConstructor
     @NoArgsConstructor
     @ToString
+    @Data
     private static class Node{
         private int value;
         private Node next;

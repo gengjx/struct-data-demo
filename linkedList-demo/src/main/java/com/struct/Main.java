@@ -10,11 +10,6 @@ import org.junit.Test;
 // 点击装订区域中的 <icon src="AllIcons.Actions.Execute"/> 图标。
 public class Main {
     public static void main(String[] args) {
-
-
-
-
-
     }
 
     @Test
@@ -45,8 +40,6 @@ public class Main {
 
 
 
-    @NoArgsConstructor
-    @AllArgsConstructor
     @Data
     @ToString
     protected static class Node{
@@ -54,6 +47,10 @@ public class Main {
         Node next;
         public Node(int data) {
             this.data = data;
+        }
+
+        public Node(){
+
         }
     }
 

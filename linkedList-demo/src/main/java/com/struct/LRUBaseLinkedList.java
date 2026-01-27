@@ -44,7 +44,7 @@ public class LRUBaseLinkedList<T> {
     }
 
     private void deleteTailHead() {
-        Node ptr = headNode;
+        Node ptr = head;
         // 空链表直接返回
         if (ptr.getNext() == null) {
             return;

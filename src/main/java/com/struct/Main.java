@@ -1,5 +1,6 @@
 package com.struct;
 
+import lombok.ToString;
 import org.junit.Test;
 
 //TIP 要<b>运行</b>代码，请按 <shortcut actionId="Run"/> 或
@@ -59,6 +60,14 @@ public class Main {
             }
         }
 
+    }
+
+
+    @ToString
+    static class User{
+        private String name;
+        private int age;
+        public User(String name,int age){}
     }
 
 }

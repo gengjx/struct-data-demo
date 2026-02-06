@@ -19,6 +19,7 @@
         <module>sorts</module>
         <module>java-basics-practice</module>
         <module>java-advanced-practice</module>
+        <module>java-concurrency-practice</module>
         <module>java-senior-practice</module>
         <module>data-structure-algorithm-practice</module>
         <module>serach</module>
@@ -29,6 +30,8 @@
         <module>kafka-learning</module>
         <module>redis-learning</module>
         <module>heap</module>
+        <module>spring-boot-web-demo</module>
+        <module>java-testing-practice</module>
     </modules>
 
     <properties>
@@ -42,13 +45,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

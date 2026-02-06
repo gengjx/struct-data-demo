@@ -91,7 +91,8 @@ public class ThreadPractice {
         }
         static void  practice2_RunnableBasics(){
             MyRunnable myRunnable = new MyRunnable();
-            myRunnable.run();
+            Thread myThread = new Thread(myRunnable);
+            myThread.start();
         }
 
 

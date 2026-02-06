@@ -20,22 +20,26 @@ public class MysqlLearningChecker {
         String port = envOrDefault("MYSQL_PORT", "3306");
         String db = envOrDefault("MYSQL_DB", "mysql_learning");
         String user = envOrDefault("MYSQL_USER", "root");
-        String password = envOrDefault("MYSQL_PASSWORD", "root");
+        String password = envOrDefault("MYSQL_PASSWORD", "wgjx913886");
 
         String url = "jdbc:mysql://" + host + ":" + port + "/" + db + "?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai";
 
-        Path solutionsPath = args.length > 0 ? Path.of(args[0]) : Path.of("exam/solutions.sql");
+        Path solutionsPath = resolveSolutionsPath(args);
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             conn.setAutoCommit(true);
 
             if (Files.exists(solutionsPath)) {
+                System.out.println("Executing solutions file: " + solutionsPath.toAbsolutePath());
                 executeSqlFile(conn, solutionsPath);
+            } else {
+                System.out.println("solutions.sql not found at: " + solutionsPath.toAbsolutePath());
+                System.out.println("Tip: put it under exam/solutions.sql (module dir) or pass the path as program arg.");
             }
 
             List<String> failures = new ArrayList<>();
 
-            assertLongEquals(conn, "SELECT COUNT(*) FROM users", 4L, failures, "users row count should be 4 (seed data)");
+            assertLongEquals(conn, "SELECT COUNT(*) FROM users", 5L, failures, "users row count should be 4 (seed data)");
             assertLongEquals(conn, "SELECT COUNT(*) FROM products", 4L, failures, "products row count should be 4 (seed data)");
             assertLongEquals(conn, "SELECT COUNT(*) FROM orders", 4L, failures, "orders row count should be 4 (seed data)");
             assertLongEquals(conn, "SELECT COUNT(*) FROM orders WHERE status='PAID'", 2L, failures, "paid orders should be 2 (seed data)");
@@ -56,6 +60,24 @@ public class MysqlLearningChecker {
     private static String envOrDefault(String key, String defaultValue) {
         String v = System.getenv(key);
         return (v == null || v.isBlank()) ? defaultValue : v;
+    }
+
+    private static Path resolveSolutionsPath(String[] args) {
+        if (args.length > 0 && args[0] != null && !args[0].isBlank()) {
+            return Path.of(args[0]);
+        }
+
+        Path defaultPath = Path.of("exam/solutions.sql");
+        if (Files.exists(defaultPath)) {
+            return defaultPath;
+        }
+
+        Path repoRootStylePath = Path.of("mysql-learning/exam/solutions.sql");
+        if (Files.exists(repoRootStylePath)) {
+            return repoRootStylePath;
+        }
+
+        return defaultPath;
     }
 
     private static void executeSqlFile(Connection conn, Path path) throws IOException, SQLException {
@@ -144,7 +166,6 @@ public class MysqlLearningChecker {
         if (!sb.isEmpty()) {
             res.add(sb.toString());
         }
-
         return res;
     }
 

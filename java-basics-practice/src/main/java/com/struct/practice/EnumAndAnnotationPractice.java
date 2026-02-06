@@ -242,7 +242,7 @@ public class EnumAndAnnotationPractice {
     // }
 
 
-    @Target(ElementType.TYPE)
+    @Target({ElementType.METHOD, ElementType.TYPE})
     @Retention(RetentionPolicy.RUNTIME)
     static @interface MyAnnotation{
         String value() default "";

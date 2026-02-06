@@ -1,6 +1,9 @@
 package com.struct.practice;
 
+import org.junit.Assert;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -31,17 +34,32 @@ public class LinearStructurePractice {
         // TODO: 实现添加元素
         public void add(int element) {
             // 如果数组已满，需要扩容
+            if (size == capacity) {
+                resize();
+            }
             // 将元素添加到数组末尾
             // size++
+            data[size++] = element;
         }
 
         // TODO: 实现在指定位置插入元素
         public void insert(int index, int element) {
             // 检查索引是否有效
+            if (index < 0 || index > size) {
+                throw new IndexOutOfBoundsException();
+            }
             // 如果数组已满，需要扩容
+            if (size == capacity) {
+                resize();
+            }
             // 将index及之后的元素后移
+            for (int i = size; i > 0; i--) {
+                data[i] = data[i - 1];
+            }
             // 在index位置插入element
             // size++
+            data[index] = element;
+            size++;
         }
 
         // TODO: 实现删除指定位置的元素
@@ -57,6 +75,12 @@ public class LinearStructurePractice {
         // TODO: 实现查找元素
         public int indexOf(int element) {
             // 遍历数组查找元素
+            int index = 0;
+            for (; index <= size; index++) {
+                if (data[index] == element) {
+                    return index;
+                }
+            }
             // 找到返回索引，未找到返回-1
             return -1;
         }
@@ -64,15 +88,22 @@ public class LinearStructurePractice {
         // TODO: 实现获取指定位置的元素
         public int get(int index) {
             // 检查索引是否有效
+            if (index < 0 || index >= size) {
+                throw new IndexOutOfBoundsException();
+            }
             // 返回指定位置的元素
-            return 0;
+            return data[index];
         }
 
         // TODO: 实现数组扩容
         private void resize() {
             // 创建新数组，容量为原来的2倍
+            int [] newData = new int[data.length * 2];
             // 将原数组元素复制到新数组
+            System.arraycopy(data, 0, newData, 0, data.length);
             // 更新capacity和data引用
+            data = newData;
+            this.capacity = data.length;
         }
 
         public int size() {
@@ -110,17 +141,45 @@ public class LinearStructurePractice {
         // TODO: 在链表头部添加节点
         public void addFirst(int data) {
             // 创建新节点
-            // 新节点的next指向head
-            // head指向新节点
+            Node node = new Node(data);
+            if (head == null) {
+                head = node;
+            }else {
+                // 新节点的next指向head
+                // head指向新节点
+                node.next = head.next;
+                head.next = node;
+            }
             // size++
+            size++;
         }
 
         // TODO: 在链表尾部添加节点
         public void addLast(int data) {
             // 创建新节点
+            Node node = new Node(data);
             // 如果链表为空，head指向新节点
+            if (head == null) {
+                head = node;
+            }else {
+                Node last = head;
+                while (last.next != null) {
+                    last = last.next;
+                }
+                last.next = node;
+            }
+            size++;
             // 否则找到最后一个节点，将其next指向新节点
             // size++
+        }
+
+        public void print() {
+            Node node = head;
+            while (node != null) {
+                System.out.print(node.data + " ");
+                node = node.next;
+            }
+            System.out.println();
         }
 
         // TODO: 在指定位置插入节点
@@ -153,9 +212,20 @@ public class LinearStructurePractice {
         // TODO: 获取指定位置的元素
         public int get(int index) {
             // 检查索引是否有效
+            if (index < 0 || index >= size) {
+                throw new IndexOutOfBoundsException();
+            }
             // 遍历到index位置
+            Node node = head;
+            int i = 0;
+            while (node != null) {
+                if (i++ == index) {
+                    return node.data;
+                }
+                node = node.next;
+            }
             // 返回节点的数据
-            return 0;
+            return -1;
         }
 
         public int size() {
@@ -437,13 +507,34 @@ public class LinearStructurePractice {
         System.out.println("=== 线性结构练习 ===");
         
         // 测试动态数组
+        System.out.printf("动态数组练习：");
         DynamicArray array = new DynamicArray(10);
+        array.add(1);
+        array.add(2);
+        array.add(3);
+        System.out.printf("打印数组："+ Arrays.toString(array.data));
+        array.insert(1, 4);
+        System.out.printf("打印数组："+Arrays.toString(array.data));
         // TODO: 测试数组的各种操作
-        
+        int k = 5;
+        for (int i = k; i < 20; i++) {
+            array.add(i);
+        }
+        System.out.printf("扩容后数组："+Arrays.toString(array.data));
+        //查找元素
+        Assert.assertEquals(2L,array.indexOf(2));
+        System.out.println();
         // 测试单链表
         SinglyLinkedList list = new SinglyLinkedList();
         // TODO: 测试链表的各种操作
-        
+        System.out.println("链表练习：【单链表 双联表 循环链表】");
+        list.addFirst(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addFirst(4);
+        list.print();
+        Assert.assertEquals(4L,list.get(1));
+
         // 测试栈
         ArrayStack stack = new ArrayStack(10);
         // TODO: 测试栈的各种操作

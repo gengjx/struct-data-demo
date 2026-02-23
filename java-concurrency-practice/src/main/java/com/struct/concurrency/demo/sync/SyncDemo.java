@@ -9,18 +9,18 @@ public class SyncDemo {
 
       Thread thread1 =  new Thread(() -> {
           for (int i = 0; i < 5000; i++) {
-              synchronized (SyncDemo.class) {
+              //synchronized (SyncDemo.class) {
                   counter++;
-              }
+              //}
 
           }
         });
 
       Thread thread2 =  new Thread(() -> {
           for (int i = 0; i < 5000; i++) {
-              synchronized (SyncDemo.class) {
+              //synchronized (SyncDemo.class) {
                   counter--;
-              }
+              //}
           }
       });
 

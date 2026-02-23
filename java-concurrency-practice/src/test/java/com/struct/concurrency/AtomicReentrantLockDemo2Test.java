@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class AtomicCounterTest {
+public class AtomicReentrantLockDemo2Test {
 
     @Test
     public void atomicCounterShouldReachExpectedValue() throws InterruptedException {
